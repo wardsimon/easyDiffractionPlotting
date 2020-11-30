@@ -101,7 +101,7 @@ class plotter:
         R1 = (pos + all_atoms_r[bonds.atom1, :].T.reshape((3, -1, 1)).transpose((0, 2, 1))).reshape((3, -1), order='F')
         R2 = (pos + (all_atoms_r[bonds.atom2, :].T + bonds.dl).reshape((3, -1, 1)).transpose((0, 2, 1))).reshape(
             (3, -1), order='F')
-        IDX = np.tile(bonds.idx, (pos.shape[1]))
+        IDX = np.tile(bonds.idx.reshape((1, -1)), (pos.shape[1], 1)).reshape((-1), order='F')
 
         lattice = self.phaseObj.cell
         pos = []
